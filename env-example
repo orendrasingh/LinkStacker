@@ -1,0 +1,24 @@
+
+SECRET =
+DEBUG = 
+API_KEY=
+
+#database credentials
+# testdb3;
+DB_NAME = 
+DB_PASSWORD = 
+DB_USERNAME = 
+DB_HOST = 
+DB_PORT = 
+
+#add your email credentials
+EMAIL_HOST = 
+EMAIL_USER =
+EMAIL_PASSWORD =
+EMAIL_TLS =
+EMAIL_PORT =
+
+# add other ENV url for These images
+FAVICON = 
+LOGO = 
+BACKGROUND_IMAGE=

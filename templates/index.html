@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="{{favicon}}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#343a40" />
+  <meta name="description" content="All links " />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Trending Links</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gentium+Basic:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+
+      background-image: url("{{BackgroundImage}}");
+      background-size: 200px;
+    }
+
+    .container {
+      z-index: 121;
+      width: 50%;
+      margin: auto;
+    }
+
+    h5 {
+      color: #343a40;
+    }
+
+    .name {
+      color: #343a40;
+    }
+
+    .love {
+      color: #343a40 !important;
+    }
+
+    a.btn {
+      background: white;
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      text-align: center;
+    }
+
+    a.btn:hover {
+      background: #1586c9;
+      transform: scale(1.02);
+    }
+
+    .media {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .footer h6 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer div {
+      margin-bottom: 10px;
+    }
+
+    /*----------------- Mail-------------------- */
+    #email {
+      text-decoration: none;
+      float: right;
+      color: #343a40;
+      margin: 2pt !important;
+    }
+
+    #email2 {
+      text-decoration: none;
+      float: right;
+      color: #343a40;
+      /* margin:2pt !important; */
+    }
+
+    .footer {
+      margin-top: 5% !important;
+      margin-bottom: 10px;
+      position: fixed;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      background: white;
+    }
+
+    .button-section {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.15rem;
+    }
+
+    .cto-btns {
+      width: 48%;
+      /* background: linear-gradient(70deg, rgb(63, 62, 62) 0%, rgb(39, 39, 39) 58%, rgb(34, 33, 33) 100%);
+       */
+       background: #1586c9;
+      text-align: center;
+      font-weight: 500;
+      font-size: 20px;
+      color: white;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      /* align-items: center; */
+      padding: 10px 30px;
+      /* margin-right: 15px; */
+      align-items: center;
+    }
+
+    .cto-btns a {
+      width: 100%;
+      text-decoration: none;
+      color: white;
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    }
+
+    .cto-btns :hover {
+      transform: scale(1.2)
+    }
+
+    .defender-sflc
+    {
+      font-family: 'Gentium Basic', serif;
+      font-size: 25px;
+      font-weight: 500;
+      margin-top: -18px;
+    }
+    .data-container
+    {
+      margin-bottom: 30px;    }
+    @media (max-width: 600px) {
+      .footer {
+        margin-top: 35% !important;
+      }
+
+      /* .main-container {
+        height: max-content;
+      } */
+
+      .cto-btns {
+        font-size: 15px;
+      }
+      .container
+      {
+        width: 98%;
+      }
+      .defender-sflc
+      {
+        font-size: 18px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="container">
+      <div class="media mt-4">
+        <img onclick="window.location.href='https://sflc.in'" src="{{logo}}" class="m-3" alt="image" width="100px"
+          height="55px">
+        <div class="media-body m-2">
+          <!-- <h5 class="align-items-center mt-2"></h5> -->
+          <p class="defender-sflc">Defender of your Digital Freedom</p>
+        </div>
+      </div>
+
+      <div class="button-section">
+        <div class="cto-btns"><a href="https://sflc.in/donate" target="_blank">Donate</a></div>
+        <div class="cto-btns"><a href="https://newslettersflcin.hosted.phplist.com/lists/?p=subscribe&id=1"
+            target="_blank">Subscribe to our newsletter</a></div>
+        <!-- <div class="cto-btns">Internet Shutdowns</div> -->
+      </div>
+      <div class="mt-4 data-container">
+         {% for item in pined %}
+        <a href="{{ item.link }}" class="btn btn-outline-dark btn-block" role="button" target="_blank">{{item.name}}</a>
+        <br>
+        {% endfor %}
+        {% for item in Notpined %}
+        <a href="{{ item.link }}" class="btn btn-outline-dark btn-block" role="button" target="_blank">{{item.name}}</a>
+        <br>
+        {% endfor %}
+
+      </div>
+      <!--------------------Footer---------------------------->
+
+      <div class="footer mt-5">
+        <hr />
+        <!-- <h6>Made With <span class="love">♥</span> in (Your City), (Your Country)</h6> -->
+        <h6>
+          <!-- Proudly Hosted By
+        <a href="/" class="name" target="_blank"> (Your Name) </a> -->
+          <div>
+            <a id="email" target="_blank" href="{{mailIid}}"> <i class="fa fa-envelope"> </i> </a>
+            <a id="email" target="_blank" href="{{instagramid}}"> <i class="fab fa-instagram"> </i>
+            </a>
+            <a id="email" target="_blank" href="{{twitterid}}"> <i class="fab fa-twitter"> </i> </a><br>
+          </div>
+          <a id="email2" href="tel:{{phone}}"><i class="fa fa-phone"> </i>{{phone}}</a>
+          <!-- <a id="email" href="https://www.instagram.com/sflc_in/"> <i class="fab fa-instagram"> </i> </a> -->
+        </h6>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

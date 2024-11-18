@@ -1,0 +1,127 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css">
+</head>
+
+<body>
+
+ <div class="col" style="margin-top: 10px;"></div>
+    <div></div>
+    <div class="team-boxed" style="background: none;" >
+        <div class="container">
+
+
+    <div class="login-clean">
+        <form style="background-color: #fbf8ff;border: 2px solid #0b0424;" id="formlink">
+            {% csrf_token %}
+
+<div id="subformid">
+            <h3 style="text-align: center"> Create link</h3>
+         <div class="form-group row" id="college">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Name of link</label>
+        <div class="col-sm-10">
+          <input type="text" name="name" class="form-control automcomplete" placeholder="Type your link name"
+            id="name" required>
+        </div>
+      </div>
+
+                 <div class="form-group" id="upload">Enter link:
+        <input type="text" name=link id="link" >
+        <div style="height: 10px;"></div>
+        <button id="uploadbutton" type="submit"> Click to create </button><br><br>
+                     <p style="text-align: center"><img style="display: none" class="loading-image2" height="50px" width="50px"></p>
+
+      <br>
+
+      </div>
+
+    <br>
+    <p style="border: 2px;border-style: dashed;text-align: center">
+    <input name="url" value="" id="url">
+    <h4  style="text-align: center;"><button type="button" class="btn btn-dark text-white" onclick="copyfunction()" >Click to Copy</button></h4>
+    <div id="copy1" style="display: none" class="alert alert-warning" role="alert">
+
+    </div>
+
+
+    </p>
+
+        </div>
+        </form>
+          <br>
+        <br>
+
+    </div>
+<br>
+        <br>
+        </div>
+    </div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+   <script>
+   var cd=document.getElementById('url').value;
+function copyfunction() {
+  var copyText = document.getElementById('url');
+  console.log(copyText + "copied value")
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  document.getElementById('copy1').style.display="block";
+  document.getElementById('copy1').innerHTML="Successfully Copied Url";
+}
+</script>
+<script>
+var respo=""
+</script>
+<script>
+    /*
+        On submiting the form, send the POST ajax
+        request to server and after successfull submission
+        display the object.
+    */
+    $(document).ajaxStart(function() {
+$(".loading-image2").show();
+  $(".loading-image2").attr("src", "https://kumulus.icco.nl/assets/loading-spinner.gif");
+
+
+}).ajaxStop(function() {
+  $(".loading-image2").hide();
+});
+    $("#formlink").submit(function (e) {
+        // preventing from page reload and default actions
+        e.preventDefault();
+        // serialize the data for sending the form data.
+        var serializedData = $(this).serialize();
+        // make POST ajax call
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'createlink' %}",
+            //data : { "name" : $('#name').val(),"link" : $('#link').val() },
+            data : serializedData,
+            success: function (response) {
+                // on successfull creating object
+                // 1. clear the form.
+                 alert(response.result);
+                 respo=response
+                 $("#name").val("");
+                 $("#link").val("");
+                 document.querySelector("#url").value = respo.result;
+                // 2. focus to nickname input
+               // $("#name").focus();
+
+                // display the newly friend to table.
+            },
+            error: function (response)
+            {
+                // alert the error if any error occured
+                alert(response["responseJSON"]["error"]);
+            }
+        })
+    })
+</script>
+</body>
+</html>
