@@ -1,7 +1,7 @@
 
 SECRET =
-DEBUG = 
-API_KEY=
+DEBUG =
+ALLOWED_HOSTS=localhost,127.0.0.1,example.com
 
 #database credentials
 # testdb3;
@@ -11,12 +11,6 @@ DB_USERNAME =
 DB_HOST = 
 DB_PORT = 
 
-#add your email credentials
-EMAIL_HOST = 
-EMAIL_USER =
-EMAIL_PASSWORD =
-EMAIL_TLS =
-EMAIL_PORT =
 
 # add other ENV url for These images
 FAVICON = 

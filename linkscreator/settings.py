@@ -32,7 +32,8 @@ SECRET_KEY=  os.getenv('SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = []
+# Get ALLOWED_HOSTS from the .env file and split by comma
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 
 
 # Application definition
