@@ -16,11 +16,10 @@ def viewlink(request,pk,title):
     return render(request,"redirectionpage.html",{"obj":obj})
 
 def index(request):
-    current_time = current_time = timezone.now()
-    num=ShowLinks.objects.all()[0]
-    data=Createlinks.objects.filter()[:num.numbers_to_show]
-    pined=Createlinks.objects.filter(pin=True, pin_created_Date__lte=current_time).order_by('-pin_created_Date')[:5]
-    Notpined=Createlinks.objects.filter(pin=False)
+    current_time = current_time = timezone.now() 
+    showLinks=ShowLinks.objects.all()[0]
+    data=Createlinks.objects.filter(pin=False).order_by('-created_at')[:showLinks.numbers_to_show]
+    pined=Createlinks.objects.filter(pin=True).order_by('-pin_created_Date')[:showLinks.pinned_numbers]
     favicon = os.getenv("FAVICON")
     logo = os.getenv("LOGO")
     BackgroundImage = os.getenv("BACKGROUND_IMAGE")
@@ -28,5 +27,5 @@ def index(request):
     twitterid=os.getenv("TWITTER")
     instagramid=os.getenv("INSTAGRAM")
     phone=os.getenv("PHONE")
-    return render(request,"index.html",{"Data":data,"pined":pined,"Notpined":Notpined,"favicon":favicon,"logo":logo,"BackgroundImage":BackgroundImage,"mailIid":mailIid,"twitterid":twitterid,"instagramid":instagramid,"phone":phone})
+    return render(request,"index.html",{"data":data,"pined":pined,"favicon":favicon,"logo":logo,"BackgroundImage":BackgroundImage,"mailIid":mailIid,"twitterid":twitterid,"instagramid":instagramid,"phone":phone})
 

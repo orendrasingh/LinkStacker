@@ -194,13 +194,18 @@
       </div>
       <div class="mt-4 data-container">
          {% for item in pined %}
-        <a href="{{ item.link }}" class="btn btn-outline-dark btn-block" role="button" target="_blank">{{item.name}}</a>
+        <a href="{{ item.link }}" class="btn btn-outline-dark btn-block" role="button" target="_blank">📌 {{item.name}}</a>
         <br>
         {% endfor %}
-        {% for item in Notpined %}
-        <a href="{{ item.link }}" class="btn btn-outline-dark btn-block" role="button" target="_blank">{{item.name}}</a>
-        <br>
-        {% endfor %}
+  
+        {% for item in data %}
+        {% if item.link and item.name %}
+            <a href="{{ item.link }}" class="btn btn-outline-dark btn-block" role="button" target="_blank">{{ item.name }}</a>
+            <br>
+        {% else %}
+            <p>Missing link or name for this item.</p>
+        {% endif %}
+    {% endfor %}
 
       </div>
       <!--------------------Footer---------------------------->

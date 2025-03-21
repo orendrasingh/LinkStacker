@@ -17,6 +17,7 @@ class Createlinks(models.Model):
 
 class ShowLinks(models.Model):
     numbers_to_show = models.IntegerField(default=10)
+    pinned_numbers = models.IntegerField(default=3)
     def __str__(self):
         return str(self.numbers_to_show)
 
