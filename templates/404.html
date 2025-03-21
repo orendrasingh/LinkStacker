@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f4f4f4;
+    }
+    .message {
+      font-size: 20px;
+      color: #333;
+    }
+    .highlight {
+      font-weight: bold;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <div class="message">
+    <p>Oops! It looks like you’ve landed on the wrong page.</p>
+    <p>We’re redirecting you to the <span class="highlight">homepage</span> in 1 second...</p>
+  </div>
+
+  <script>
+    window.onload = function() {
+      setTimeout(function() {
+        window.location.href = "/";
+      }, 1000); // Redirect to the homepage after 1 second
+    };
+  </script>
+</body>
+</html>
